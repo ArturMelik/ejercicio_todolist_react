@@ -1,0 +1,30 @@
+[
+  {
+    "title": "Formulario con input + botón",
+    "description": "Permite agregar nuevas tareas al estado usando useState."
+  },
+  {
+    "title": "Componente List",
+    "description": "Recorre y muestra todos los items utilizando .map."
+  },
+  {
+    "title": "Componente Item / Card",
+    "description": "Renderiza cada tarea individual con su texto y botón de borrar."
+  },
+  {
+    "title": "Botón CLEAR",
+    "description": "Borra todas las tareas del estado."
+  },
+  {
+    "title": "Botón BORRAR individual",
+    "description": "Permite borrar una tarea específica usando su id."
+  },
+  {
+    "title": "Botón RESET",
+    "description": "Restaura las tareas iniciales predefinidas."
+  },
+  {
+    "title": "Estilos CSS",
+    "description": "Aplicar estilos a cada componente usando clases vistas en clase."
+  }
+]
