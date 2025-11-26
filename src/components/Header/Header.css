@@ -1,0 +1,10 @@
+.container-header{
+    
+  position: fixed;
+  width: 100%;
+  background-color: silver;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}

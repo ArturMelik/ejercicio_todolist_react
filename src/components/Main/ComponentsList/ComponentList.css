@@ -1,5 +1,7 @@
 .formulario{
-    background: #fff;       
+  background: rgba(211, 13, 13, 0.2); /* transparencia */
+  backdrop-filter: blur(8px);           /* desenfoque */
+  -webkit-backdrop-filter: blur(8px);   /* compatibilidad */
   padding: 20px;          
   border-radius: 10px;    
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
@@ -48,4 +50,10 @@ button:hover {
 button:disabled {
   background: #ccc;
   cursor: not-allowed;
+}
+
+.mensaje {
+  color: green;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
