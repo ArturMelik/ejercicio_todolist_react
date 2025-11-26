@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import ComponentsItem from "./ComponentsItem/ComponentItem.jsx";
 import Tasks from "../../../../tasks.json";
 import { v4 as uuidv4 } from "uuid";
@@ -18,24 +18,11 @@ const ComponentList = () => {
     description: "",
   });
 
-  const timerRef = useRef(null);
-
-  const resetTimer = () => {
-    if (timerRef.current) clearTimeout(timerRef.current);
-
-    timerRef.current = setTimeout(() => {
-      if (!values.title && !values.description) return;
-      setValues({ title: "", description: "" });
-    }, 5000);
-  };
-
   const handleChange = (e) => {
     setValues({
       ...values,
       [e.target.name]: e.target.value,
     });
-
-    resetTimer(); // ⬅ reemplaza la lógica del useEffect
   };
 
   const handleSubmit = (e) => {
@@ -53,16 +40,26 @@ const ComponentList = () => {
       description: "",
     });
 
-    // Limpia cualquier timeout activo
-    if (timerRef.current) clearTimeout(timerRef.current);
-
     Swal.fire({
-      icon: "success",
-      title: "Tarea añadida",
-      showConfirmButton: false,
-      timer: 2000,
-    });
+    icon: 'success',
+    title: 'Tarea añadida',
+    showConfirmButton: false,
+    timer: 2000 
+  });
   };
+
+  useEffect(() => {
+    // Si no hay nada escrito, no hace nada
+    if (!values.title && !values.description) return;
+
+    // el timeout
+    const timer = setTimeout(() => {
+      setValues({ title: "", description: "" }); // vaciar formulario
+    }, 5000);
+
+    // Limpiar el timeout si el usuario escribe algo o envía
+    return () => clearTimeout(timer);
+  }, [values]);
 
   const paintData = () =>
     items.map((item, index) => (
@@ -82,7 +79,13 @@ const ComponentList = () => {
     const filteresItems = items.filter((item, index) => index !== i);
     setItems(filteresItems); //Carga el estado con los items restantes
   };
+  // Recibe un índice.
+  // Crea un nuevo array con todos menos ese.
+  // Actualiza el estado para que se re-renderice la lista sin ese elemento.
 
+  //i --> posicion del array a cambiar
+  //updatedItem --> dato actualizado a guardar
+  // const editItem = ()
   const editItem = (i, updatedItem) => {
     let data = [...items]; //Crea un array nuevo
     data[i] = updatedItem;
